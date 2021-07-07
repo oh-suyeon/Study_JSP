@@ -1,0 +1,42 @@
+<div style="width:200px; text-align:center; border:1px solid silver; padding: 30px;">
+
+<b>반딧불</b> 
+<br />
+<br />
+
+<div style="text-align:right">
+	윤동주 
+	<br />
+	<br />
+</div>
+
+가자 가자 가자 
+<br />
+숲으로 가자 
+<br />
+<br />
+
+달 조각을 주우러 
+<br />
+숲으로 가자 
+<br />
+<br />
+
+그믐밤 반딧불은 
+<br />
+부서진 달 조각 
+<br />
+<br />
+
+가자 가자 가자
+<br />
+숲으로 가자
+<br />
+<br />
+
+달 조각을 주우러
+<br />
+숲으로 가자
+<br />
+
+</div>
