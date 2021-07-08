@@ -1,4 +1,3 @@
-<%@page import="util.Cookies"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +17,7 @@
 			</td>
 			<td>
 				<!-- 내용부분 : 시작 -->
-				레이아웃1 <br /><br /><br />
+				<jsp:include page="/chapter09/loginForm.jsp" flush="false" />
 				<!-- 내용부분 : 끝 -->
 			</td>
 		</tr>

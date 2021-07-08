@@ -60,7 +60,7 @@ public class Cookies {
 		return cookie;
 	}
 	
-	//이름이 name이고 값이 value, 요청 경로가 path, 유효시간이 maxAge인 Cookie 객체 생성해 리턴
+	//이름이 name이고 값이 value, 요청 경로가 path, 유효시간이 maxAge인 도메인 domain인 Cookie 객체 생성해 리턴
 	//오버로딩
 	public static Cookie createCookie(String name, String value, String path, String domain, int maxAge) throws IOException {
 		Cookie cookie = new Cookie(name, URLEncoder.encode(value, "UTF-8"));
