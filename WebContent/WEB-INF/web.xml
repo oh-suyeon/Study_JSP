@@ -39,4 +39,12 @@
   	<exception-type>java.lang.NullPointerException</exception-type>
   	<location>/error/errorNullPointer.jsp</location>
   </error-page>
+  
+  <!-- session의 유효 시간 설정(분단위) ex. 50분으로 설정 -->
+  <!-- 반드시 설정해줘야 한다. 메모리 부족 현상을 막으려면. -->
+  <session-config>
+  	<session-timeout>50</session-timeout>
+  </session-config>
+  
+  
 </web-app>
