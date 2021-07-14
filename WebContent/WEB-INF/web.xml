@@ -46,5 +46,10 @@
   	<session-timeout>50</session-timeout>
   </session-config>
   
-  
+  <!-- 웹 어플리케이션 시작 시(톰캣 기동) JDBC 드라이버를 로딩하므로 개별 JSP는 JDBC 드라이버를 로딩하지 않아도 됨 -->
+  <servlet>
+  	<servlet-name>oracleDriverLoader</servlet-name>
+  	<servlet-class>jdbc.OracleDriverLoader</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
 </web-app>
