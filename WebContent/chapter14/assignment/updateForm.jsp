@@ -43,17 +43,20 @@
 			<tr>
 				<th>구분</th>
 				<td>
-					<input type="text" value='<%=rs.getString("lprod_gu") %>' name="lprodGu">
+					<c:set var="lprodGu" value='<%=rs.getString("lprod_gu") %>'/>
+					<input type="text" value='${lprodGu}' name="lprodGu">
 				</td>
 			</tr>
 			<tr>
 				<th>이름</th>
 				<td>
+					<c:set var="lprodNm" value='<%=rs.getString("lprod_nm") %>'/>
 					<input type="text" value='<%=rs.getString("lprod_nm") %>' name="lprodNm">
 				</td>
 			</tr>
 		</table>
 		<button type="submit">수정</button>
+		<button type="button" onclick="location.href='/chapter14/assignment/delete.jsp?lprodId=${param.lprodId}&lprodGu=${lprodGu}&lprodNm=${lprodNm}'">삭제</button> <br />
 	</form>
 	<a href="/chapter14/assignment/viewLprodList.jsp">목록으로 돌아가기</a>
 </body>

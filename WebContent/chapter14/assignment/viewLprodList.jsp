@@ -7,7 +7,6 @@
 <%@page import="java.sql.SQLException"%>
 <%
 
-// 	Class.forName("oracle.jdbc.driver.OracleDriver");
 
 	Connection conn = null; 
 	Statement stmt = null; 
@@ -17,7 +16,7 @@
 		String jdbcDriver = "jdbc:oracle:thin:@localhost:1521/xe";
 		String dbUser = "djs02061";
 		String dbPass = "java";
-		String query = "SELECT * FROM lprod ORDER BY lprod_gu";
+		String query = "SELECT * FROM lprod ORDER BY lprod_id";
 		
 		conn = DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
 		stmt = conn.createStatement();

@@ -52,4 +52,11 @@
   	<servlet-class>jdbc.OracleDriverLoader</servlet-class>
   	<load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <!-- 웹 어플리케이션 시작 시(톰캣 기동) DBCPInit 서블릿 클래스가 자동 시작하고 init()메서드 호출됨-->
+  <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>jdbc.DBCPInit</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
 </web-app>
