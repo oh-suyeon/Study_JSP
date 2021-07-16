@@ -12,11 +12,11 @@ public class WriteMessageService {
 	
 	//싱글턴 패턴 구현 (쓰리쿠션)
 	private static WriteMessageService instance = new WriteMessageService(); 
-	public static WriteMessageService getInstance() {return instance;} 
 	private WriteMessageService() {} // 빈 깡통 생성자
+	public static WriteMessageService getInstance() {return instance;} 
 	
 	public int write(Message messageVo) {
-		System.out.println("messageVo : " + messageVo.toString());
+//		System.out.println("messageVo : " + messageVo.toString());
 		
 		Connection conn = null;
 		int insertCount = 0;

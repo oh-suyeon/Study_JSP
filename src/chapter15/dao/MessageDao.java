@@ -2,7 +2,12 @@ package chapter15.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import chapter15.jdbc.jdbcUtil;
 import chapter15.vo.Message;
@@ -35,5 +40,69 @@ public class MessageDao {
 		}finally {
 			jdbcUtil.close(pstmt);
 		}
+	}
+	
+	// service 객체에서 사용할 메서드 (방명록 리스트를 리턴)
+	public List<Message> selectList(Connection conn, int firstRow, int endRow){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(
+						" SELECT * " + 
+						" FROM  " + 
+						"    (SELECT ROW_NUMBER() OVER ( ORDER BY MESSAGE_ID DESC) rnum  " + 
+						"            ,message_id, guest_name, password, message " + 
+						"     FROM guestbook_message) " + 
+						" WHERE rnum between "+ firstRow +" AND " +endRow
+					);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				List<Message> messageList = new ArrayList<Message>();
+				do { // 이미 첫번째 행을 바라보고 있기 때문.
+					Message message = new Message();
+					message.setMessageId(rs.getInt("message_id"));
+					message.setGuestName(rs.getString("guest_name"));
+					message.setPassword(rs.getNString("password"));
+					message.setMessage(rs.getNString("message"));
+					
+					messageList.add(message);
+				}while(rs.next());
+				
+				return messageList;
+				
+			}else {// select 결과가 null일때
+				return Collections.emptyList();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			jdbcUtil.close(rs);
+			jdbcUtil.close(pstmt);
+		}
+		return null;
+	}
+	
+	
+	public int selectCount(Connection conn) throws SQLException {
+
+		Statement stmt = null;
+		// select 쿼리니까 결과는 rs로 온다. 
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT COUNT(*) cnt "
+								 + "FROM guestbook_message");
+			rs.next();
+			return rs.getInt("cnt");
+			
+		}finally {
+			jdbcUtil.close(rs);
+			jdbcUtil.close(stmt);
+		}
+		
 	}
 }
