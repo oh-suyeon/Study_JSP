@@ -59,4 +59,36 @@
   	<servlet-class>jdbc.DBCPInit</servlet-class>
   	<load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <!-- 
+  	서블릿으로 사용할 클래스를 등록 
+  -->
+  <servlet>
+  	<servlet-name>now</servlet-name>
+  	<servlet-class>chapter17.NowServlet</servlet-class> 
+  </servlet>
+  <!-- 
+  	서블릿과 URL 간의 매핑
+  	NowServlet을 /now 경로에 매핑
+  -->
+  <servlet-mapping>
+  	<servlet-name>now</servlet-name>
+  	<url-pattern>/now</url-pattern>
+  </servlet-mapping>
+  <!--
+  	서블릿을 최초 요청 시 서블릿 객체를 생성
+  	그 이후부터는 앞서 생성한 서블릿 객체를 그대로 사용
+   -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </web-app>

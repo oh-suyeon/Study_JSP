@@ -96,6 +96,7 @@ public class MessageDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT COUNT(*) cnt "
 								 + "FROM guestbook_message");
+			//1행을 바라보게 함
 			rs.next();
 			return rs.getInt("cnt");
 			
@@ -105,4 +106,61 @@ public class MessageDao {
 		}
 		
 	}
+	public Message select(Connection conn, int messageId) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(
+							"SELECT * FROM guestbook_message WHERE message_id = ?");
+			pstmt.setInt(1, messageId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//Vo(beans, model이라고도 함)
+				Message message = new Message();
+				message.setMessageId(rs.getInt("message_id"));
+				message.setGuestName(rs.getNString("guest_name"));
+				message.setPassword(rs.getNString("password"));
+				message.setMessage(rs.getNString("message"));
+				return message; 
+			}else {
+				return null;
+			}
+		}finally {
+			jdbcUtil.close(rs);
+			jdbcUtil.close(pstmt);
+		}
+	}
+	
+	public int delete(Connection conn, int messageId) throws SQLException{
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(
+						"DELETE FROM guestbook_message WHERE message_id = ?"
+					);
+			pstmt.setInt(1, messageId);
+			
+			return pstmt.executeUpdate();
+		}finally {
+			jdbcUtil.close(pstmt);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
